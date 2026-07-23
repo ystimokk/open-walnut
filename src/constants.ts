@@ -138,6 +138,10 @@ export const CLAUDE_HOME = path.join(os.homedir(), '.claude');
 export const HISTORY_CACHE_DIR = path.join(WALNUT_HOME, 'cache', 'history');
 /** Last-known model catalog per host (from any session's list_models) — feeds pickers before/without a live CLI. */
 export const HOST_MODEL_CATALOG_FILE = path.join(WALNUT_HOME, 'cache', 'host-model-catalogs.json');
+/** Cached result of the macOS keychain subscription probe — sticky when found,
+ *  short TTL when missing, so we don't re-trigger the keychain access popup on
+ *  every /api/config fetch. See core/claude-cli-detect.ts. */
+export const CLAUDE_SUBSCRIPTION_PROBE_FILE = path.join(WALNUT_HOME, 'cache', 'claude-subscription-probe.json');
 export const HOOK_LOG_FILE = path.join(WALNUT_HOME, 'hook-errors.log');
 export const DAILY_DIR = path.join(MEMORY_DIR, 'daily');
 /** Pinned global memory. Lives INSIDE memory/ (three-word model: memory / skill / history). */

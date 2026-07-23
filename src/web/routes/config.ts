@@ -191,8 +191,12 @@ async function fetchOllamaModels(baseUrl?: string): Promise<ModelEntry[]> {
 }
 
 // GET /api/config/providers — list all providers with status
-configRouter.get('/providers', async (_req: Request, res: Response, next: NextFunction) => {
+configRouter.get('/providers', async (req: Request, res: Response, next: NextFunction) => {
   try {
+    // ?refresh=1 forces a fresh macOS keychain probe (bypasses the cached
+    // subscription result) — for an explicit "re-check" after logging into
+    // Claude Code. Normal polls use the cache, avoiding the keychain popup.
+    const forceProbe = req.query.refresh === '1' || req.query.refresh === 'true'
     const config = await getConfig()
     const merged = buildProviderMap(config.providers)
 
@@ -237,7 +241,7 @@ configRouter.get('/providers', async (_req: Request, res: Response, next: NextFu
       // subscription credential exists (existence probe only, never the value).
       if (prov.api === 'claude-cli') {
         const { detectClaudeCli } = await import('../../core/claude-cli-detect.js')
-        const caps = detectClaudeCli()
+        const caps = detectClaudeCli(forceProbe)
         providers[name] = {
           api: prov.api,
           base_url: prov.base_url,
@@ -319,7 +323,7 @@ configRouter.get('/providers', async (_req: Request, res: Response, next: NextFu
         // claude-cli is keyless: probe the local subscription instead of 'no_key'.
         if (template.api === 'claude-cli') {
           const { detectClaudeCli } = await import('../../core/claude-cli-detect.js')
-          const caps = detectClaudeCli()
+          const caps = detectClaudeCli(forceProbe)
           providers[name] = {
             api: template.api,
             status: caps.subscriptionReady ? 'ready' : 'no_key',
