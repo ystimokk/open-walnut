@@ -50,6 +50,11 @@ const BASELINE: Record<string, number> = {
   'src/utils/process.ts': 1,
   'src/providers/daemon-core.ts': 1,
   'src/providers/daemon-version-check.ts': 1,
+  // Startup-only guard, same shape as daemon-version-check above: both run from
+  // commands/web.ts BEFORE startServer(), so no route exists yet to freeze. The
+  // rebuild it shells out to is also the thing that makes the server able to open
+  // its database at all — deferring it would only mean failing later.
+  'src/core/native-abi-preflight.ts': 1,
 };
 
 function countSyncCalls(): Map<string, number> {
