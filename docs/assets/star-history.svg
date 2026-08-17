@@ -49,13 +49,13 @@
   <line class="tick" x1="72" y1="396" x2="72" y2="402" />
   <text class="axis-label" x="72" y="424" text-anchor="middle">Jul 17</text>
   <line class="tick" x1="268.5" y1="396" x2="268.5" y2="402" />
-  <text class="axis-label" x="268.5" y="424" text-anchor="middle">Jul 24</text>
+  <text class="axis-label" x="268.5" y="424" text-anchor="middle">Jul 25</text>
   <line class="tick" x1="465" y1="396" x2="465" y2="402" />
-  <text class="axis-label" x="465" y="424" text-anchor="middle">Jul 31</text>
+  <text class="axis-label" x="465" y="424" text-anchor="middle">Aug 2</text>
   <line class="tick" x1="661.5" y1="396" x2="661.5" y2="402" />
-  <text class="axis-label" x="661.5" y="424" text-anchor="middle">Aug 7</text>
+  <text class="axis-label" x="661.5" y="424" text-anchor="middle">Aug 10</text>
   <line class="tick" x1="858" y1="396" x2="858" y2="402" />
-  <text class="axis-label" x="858" y="424" text-anchor="middle">Aug 13</text>
+  <text class="axis-label" x="858" y="424" text-anchor="middle">Aug 17</text>
   <path d="M 72 396 H 858 V 396 H 72 Z" fill="url(#area)" />
   <path class="line" d="M 72 396 H 858" />
   <text class="chart-caption" x="858" y="442" text-anchor="end">Updated from the GitHub API</text>
